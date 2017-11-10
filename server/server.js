@@ -19,7 +19,15 @@ app.post('/todos', (req, res) => {
   }, (e) => {
     console.log('Unable to save todo');
     res.status(400).send(e);
-  })
+  });
+});
+
+app.get('/todos', (req, res) => {
+  Todo.find().then((todos) => {
+    res.send({todos});
+  }, (e) => {
+    console.log('Unable to retrieve todos')
+  });
 });
 
 app.listen(3000, () => {
